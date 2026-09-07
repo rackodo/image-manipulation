@@ -6,11 +6,12 @@
 	"configurations": [
 
 		{
-			"name": "view_image.py",
+			"name": "Python Debugger: Module",
 			"type": "debugpy",
 			"request": "launch",
-			"program": "${workspaceFolder}/view_image.py",
-			"console": "integratedTerminal"
+			"cwd": "${workspaceFolder}/src",
+			"module": "rkdo_imgman",
+			"args": ["${workspaceFolder}/azimuth.png"]
 		}
 	]
 }

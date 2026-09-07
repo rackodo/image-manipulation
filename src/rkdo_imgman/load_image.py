@@ -2,8 +2,8 @@ from PIL import Image
 
 # make callable class
 class ImageRender:
-	def __init__(self):
-		self.im = Image.open( 'bash.jpg' ) # source image
+	def __init__(self, path):
+		self.im = Image.open( path ) # source image
 		self.wsize, self.ysize = self.im.size
 
 		self.offset = 0 # the offset according to image width

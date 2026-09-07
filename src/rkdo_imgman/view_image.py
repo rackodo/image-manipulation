@@ -1,9 +1,9 @@
 import pygame
 
-from load_image import ImageRender
+from rkdo_imgman.load_image import ImageRender
 
 class Viewer:
-	def __init__(self, w: int, h: int):
+	def __init__(self, w: int, h: int, path: str):
 		self.w = w
 		self.h = h
 
@@ -14,7 +14,7 @@ class Viewer:
 		self.clock = pygame.time.Clock()
 
 		# call our image render class. it's called this until i think of a better name
-		self.render = ImageRender()
+		self.render = ImageRender(path)
 
 	# start the thingy
 	def start(self):
@@ -57,6 +57,3 @@ class Viewer:
 
 		self.screen.blit(surface, (0, 0))
 		pygame.display.flip()
-
-view = Viewer(500, 500)
-view.start()
