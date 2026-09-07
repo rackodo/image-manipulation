@@ -1,6 +1,7 @@
 import pygame
 
-from rkdo_imgman.load_image import ImageRender
+from rkdo_imgman.sorter import Sorter
+from rkdo_imgman.isolator import Isolator
 
 class Viewer:
 	def __init__(self, w: int, h: int, path: str):
@@ -14,7 +15,7 @@ class Viewer:
 		self.clock = pygame.time.Clock()
 
 		# call our image render class. it's called this until i think of a better name
-		self.render = ImageRender(path)
+		self.render = Sorter(path, direction="vertical")
 
 	# start the thingy
 	def start(self):

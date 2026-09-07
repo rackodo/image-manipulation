@@ -11,7 +11,7 @@
 			"request": "launch",
 			"cwd": "${workspaceFolder}/src",
 			"module": "rkdo_imgman",
-			"args": ["${workspaceFolder}/azimuth.png"]
+			"args": ["${workspaceFolder}/bash.jpg"]
 		}
 	]
 }
