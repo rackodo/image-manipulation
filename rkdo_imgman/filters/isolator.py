@@ -2,9 +2,9 @@ from PIL import Image
 
 # make callable class
 class Isolator:
-	def __init__(self, path, direction="vertical", channel="r", chunks=10):
-		self.im = Image.open( path ) # source image
-		self.wsize, self.ysize = self.im.size
+	def __init__(self, source, direction="vertical", channel="r", chunks=10):
+		self.source = source # source image
+		self.wsize, self.ysize = self.source.size
 
 		self.offset = 0 # the offset according to image width
 		self.chunks = chunks # how many columns should be sorted at any given time, before the image is returned
@@ -22,10 +22,10 @@ class Isolator:
 		for _ in range(self.chunks):
 			if self.direction == "vertical":
 				if self.offset >= self.wsize:
-					return self.im
+					return self.source
 
 				# get a single column of pixels and turn them into rgba values
-				inCol = self.im.crop((self.offset, 0, self.offset + 1, self.ysize))
+				inCol = self.source.crop((self.offset, 0, self.offset + 1, self.ysize))
 				inPix = list(inCol.getdata())
 
 				# isolate a colour channel according to self.channel
@@ -42,13 +42,13 @@ class Isolator:
 				outCol.putdata(inIsolate)
 
 				# paste the sorted portion over the original image
-				self.im.paste(outCol, (self.offset, 0))
+				self.source.paste(outCol, (self.offset, 0))
 			else:
 				if self.offset >= self.ysize:
-					return self.im
+					return self.source
 				
 				# get a single column of pixels and turn them into rgba values
-				inCol = self.im.crop((0, self.offset, self.wsize, self.offset + 1))
+				inCol = self.source.crop((0, self.offset, self.wsize, self.offset + 1))
 				inPix = list(inCol.getdata())
 				
 				# isolate a colour channel according to self.channel
@@ -65,11 +65,11 @@ class Isolator:
 				outCol.putdata(inIsolate)
 				
 				# paste the sorted portion over the original image
-				self.im.paste(outCol, (0, self.offset))
+				self.source.paste(outCol, (0, self.offset))
 
 			self.offset += 1
 
-		return self.im
+		return self.source
 
 
 

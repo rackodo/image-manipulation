@@ -1,7 +1,9 @@
 import pygame
 
-from rkdo_imgman.sorter import Sorter
-from rkdo_imgman.isolator import Isolator
+from rkdo_imgman.filters.sorter import Sorter
+from rkdo_imgman.filters.isolator import Isolator
+
+from rkdo_imgman.sources.image_file import ImageFromFile
 
 class Viewer:
 	def __init__(self, w: int, h: int, path: str):
@@ -14,8 +16,10 @@ class Viewer:
 		pygame.display.set_caption("Shit fuck")
 		self.clock = pygame.time.Clock()
 
+		self.source = ImageFromFile(path)
+
 		# call our image render class. it's called this until i think of a better name
-		self.render = Sorter(path, direction="vertical")
+		self.render = Isolator(self.source, direction="horizontal", channel="g")
 
 	# start the thingy
 	def start(self):

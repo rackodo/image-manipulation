@@ -9,7 +9,7 @@
 			"name": "Python Debugger: Module",
 			"type": "debugpy",
 			"request": "launch",
-			"cwd": "${workspaceFolder}/src",
+			"cwd": "${workspaceFolder}",
 			"module": "rkdo_imgman",
 			"args": ["${workspaceFolder}/bash.jpg"]
 		}
